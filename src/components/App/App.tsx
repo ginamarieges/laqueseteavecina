@@ -1,9 +1,10 @@
+import Countdown from "../Countdown/Countdown";
 import ContainerStyled from "../shared/ContainerStyled";
 
 const App = (): JSX.Element => {
   return (
     <ContainerStyled>
-      <p>Hello world!</p>
+      <Countdown />
     </ContainerStyled>
   );
 };
