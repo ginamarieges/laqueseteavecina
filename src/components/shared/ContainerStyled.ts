@@ -10,6 +10,12 @@ const ContainerStyled = styled.div`
   justify-content: center;
   align-items: center;
   gap: 100px;
+
+  .title {
+    text-transform: uppercase;
+    font-size: 4.5rem;
+    text-shadow: 1px 1px 2px black;
+  }
 `;
 
 export default ContainerStyled;
