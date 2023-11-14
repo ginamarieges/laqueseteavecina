@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CountdownStyled from "./CountdownStyled";
+import CountdownCard from "./CountdownCard/CountdownCard";
 
 const Countdown = (): React.ReactElement => {
   const [timeRemaining, setTimeRemaining] = useState({
@@ -46,17 +47,10 @@ const Countdown = (): React.ReactElement => {
 
   const { days, hours, minutes, seconds } = timeRemaining;
 
-  const renderDigitCards = (number: number) => {
+  const renderDigitCards = (number: number, key: string) => {
     const digitString = number.toString().padStart(2, "0");
     return digitString.split("").map((digit, index) => (
-      <div key={index} className="flip-card flip">
-        <div className="top">
-          <span>{digit}</span>
-        </div>
-        <div className="bottom">
-          <span>{digit}</span>
-        </div>
-      </div>
+      <CountdownCard key={`${key}_${index}_${digit}`} displayedNumber={+digit} increment={false} />
     ));
   };
 
@@ -64,19 +58,19 @@ const Countdown = (): React.ReactElement => {
     <CountdownStyled className="countdown">
       <div className="controls">
         <span className="controls__name">days</span>
-        <div className="container-segment">{renderDigitCards(days)}</div>
+        <div className="container-segment">{renderDigitCards(days, 'days)}</div>
       </div>
       <div className="controls">
         <span className="controls__name">hours</span>
-        <div className="container-segment">{renderDigitCards(hours)}</div>
+        <div className="container-segment">{renderDigitCards(hours, 'hours')}</div>
       </div>
       <div className="controls">
         <span className="controls__name">minutes</span>
-        <div className="container-segment">{renderDigitCards(minutes)}</div>
+        <div className="container-segment">{renderDigitCards(minutes, 'minutes')}</div>
       </div>
       <div className="controls">
         <span className="controls__name">seconds</span>
-        <div className="container-segment">{renderDigitCards(seconds)}</div>
+        <div className="container-segment">{renderDigitCards(seconds, 'seconds')}</div>
       </div>
     </CountdownStyled>
   );
